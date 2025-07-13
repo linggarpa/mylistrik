@@ -7,7 +7,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 fs-5" style="margin-top: -5px;">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="<?= base_url('pelanggan'); ?>">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('pelanggan/riwayatbayar'); ?>">Riwayat pembayaran</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('user/donasi'); ?>">Profile</a></li>               
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/logout'); ?>">Logout</a></li>               
             </ul>
         </div>

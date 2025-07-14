@@ -1,14 +1,36 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Controller Admin (Adm)
+ *
+ * Mengelola halaman login dan register Mylistrik.
+ *
+ * @package     Application\Controllers
+ * @subpackage  Auth
+ * @category    Controller
+ * @author      Linggar Pramudia Adi
+ * @version     1.0
+ */
 class Auth extends CI_Controller
 {
+    /**
+     * Konstruktor, load library form_validation
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
     }
 
+
+    /**
+     * Halaman login pelanggan, validasi form, dan proses login.
+     * Jika validasi gagal, tampilkan halaman login.
+     * Jika berhasil, panggil _login().
+     *
+     * @return void
+     */
     public function index()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim', [
@@ -29,6 +51,12 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Proses autentikasi login pelanggan.
+     * Cek username dan password, set session jika berhasil.
+     *
+     * @return void
+     */
     private function _login()
     {
         $username = htmlspecialchars($this->input->post('username', true));
@@ -60,6 +88,13 @@ class Auth extends CI_Controller
         }
     }
 
+
+    /**
+     * Halaman registrasi pelanggan.
+     * Validasi input, simpan data pelanggan baru jika valid.
+     *
+     * @return void
+     */
     public function register()
     {
 
@@ -120,6 +155,12 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Halaman login admin.
+     * Validasi form dan proses login admin.
+     *
+     * @return void
+     */
     public function loginadm()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim', [
@@ -140,6 +181,12 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Proses autentikasi login admin.
+     * Cek username dan password, set session jika berhasil.
+     *
+     * @return void
+     */
     private function _loginadm()
     {
         $username = htmlspecialchars($this->input->post('username', true));
@@ -171,6 +218,11 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Logout user/admin dan destroy session.
+     *
+     * @return void
+     */
     public function logout()
     {
         $this->session->sess_destroy();

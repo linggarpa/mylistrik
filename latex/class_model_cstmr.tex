@@ -1,0 +1,124 @@
+\doxysection{Model\+Cstmr Class Reference}
+\hypertarget{class_model_cstmr}{}\label{class_model_cstmr}\index{ModelCstmr@{ModelCstmr}}
+Inheritance diagram for Model\+Cstmr\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_cstmr}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_cstmr_af7b04a68b541a5daaaeda40784a58283}{cek\+Data}} (\$where=null)
+\item 
+\mbox{\hyperlink{class_model_cstmr_a2bb01c9ba39b041b65f584f47a98229e}{get\+\_\+all\+\_\+tarif}} ()
+\item 
+\mbox{\hyperlink{class_model_cstmr_a19152bd519a4b5e0cd794209b09f8fac}{get\+\_\+unpaid\+\_\+by\+\_\+pelanggan}} (\$id\+\_\+pelanggan)
+\item 
+\mbox{\hyperlink{class_model_cstmr_a83ba3ed8d669bdc16f575906df55ea6f}{viewtagihan}} (\$where)
+\item 
+\mbox{\hyperlink{class_model_cstmr_aaca92e18e6847d97796fd1fa8d82a3ed}{simpan\+Data}} (\$data=null)
+\item 
+\mbox{\hyperlink{class_model_cstmr_aa961e09d3ebc1b6df201147ef8fd503e}{simpan\+Data\+Pembayaran}} (\$data=null)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_model_cstmr_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_model_cstmr_af7b04a68b541a5daaaeda40784a58283}\index{ModelCstmr@{ModelCstmr}!cekData@{cekData}}
+\index{cekData@{cekData}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{cekData()}{cekData()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_af7b04a68b541a5daaaeda40784a58283} 
+Model\+Cstmr\+::cek\+Data (\begin{DoxyParamCaption}\item[{}]{\$where}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Ambil data pelanggan berdasarkan kondisi tertentu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$where} & Array kondisi untuk filter data pelanggan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+CI\+\_\+\+DB\+\_\+result Query result object. 
+\end{DoxyReturn}
+\Hypertarget{class_model_cstmr_a2bb01c9ba39b041b65f584f47a98229e}\index{ModelCstmr@{ModelCstmr}!get\_all\_tarif@{get\_all\_tarif}}
+\index{get\_all\_tarif@{get\_all\_tarif}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{get\_all\_tarif()}{get\_all\_tarif()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_a2bb01c9ba39b041b65f584f47a98229e} 
+Model\+Cstmr\+::get\+\_\+all\+\_\+tarif (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Ambil semua data tarif.
+
+\begin{DoxyReturn}{Returns}
+array Array data tarif. 
+\end{DoxyReturn}
+\Hypertarget{class_model_cstmr_a19152bd519a4b5e0cd794209b09f8fac}\index{ModelCstmr@{ModelCstmr}!get\_unpaid\_by\_pelanggan@{get\_unpaid\_by\_pelanggan}}
+\index{get\_unpaid\_by\_pelanggan@{get\_unpaid\_by\_pelanggan}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{get\_unpaid\_by\_pelanggan()}{get\_unpaid\_by\_pelanggan()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_a19152bd519a4b5e0cd794209b09f8fac} 
+Model\+Cstmr\+::get\+\_\+unpaid\+\_\+by\+\_\+pelanggan (\begin{DoxyParamCaption}\item[{}]{\$id\+\_\+pelanggan}{}\end{DoxyParamCaption})}
+
+Ambil data tagihan yang belum dibayar berdasarkan ID pelanggan.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id\+\_\+pelanggan} & ID pelanggan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array Array data tagihan belum dibayar. 
+\end{DoxyReturn}
+\Hypertarget{class_model_cstmr_aaca92e18e6847d97796fd1fa8d82a3ed}\index{ModelCstmr@{ModelCstmr}!simpanData@{simpanData}}
+\index{simpanData@{simpanData}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{simpanData()}{simpanData()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_aaca92e18e6847d97796fd1fa8d82a3ed} 
+Model\+Cstmr\+::simpan\+Data (\begin{DoxyParamCaption}\item[{}]{\$data}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Simpan data pelanggan baru.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$data} & Array data pelanggan yang akan disimpan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_cstmr_aa961e09d3ebc1b6df201147ef8fd503e}\index{ModelCstmr@{ModelCstmr}!simpanDataPembayaran@{simpanDataPembayaran}}
+\index{simpanDataPembayaran@{simpanDataPembayaran}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{simpanDataPembayaran()}{simpanDataPembayaran()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_aa961e09d3ebc1b6df201147ef8fd503e} 
+Model\+Cstmr\+::simpan\+Data\+Pembayaran (\begin{DoxyParamCaption}\item[{}]{\$data}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Simpan data pelanggan baru.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$data} & Array data pelanggan yang akan disimpan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_cstmr_a83ba3ed8d669bdc16f575906df55ea6f}\index{ModelCstmr@{ModelCstmr}!viewtagihan@{viewtagihan}}
+\index{viewtagihan@{viewtagihan}!ModelCstmr@{ModelCstmr}}
+\doxysubsubsection{\texorpdfstring{viewtagihan()}{viewtagihan()}}
+{\footnotesize\ttfamily \label{class_model_cstmr_a83ba3ed8d669bdc16f575906df55ea6f} 
+Model\+Cstmr\+::viewtagihan (\begin{DoxyParamCaption}\item[{}]{\$where}{}\end{DoxyParamCaption})}
+
+Ambil data tagihan dengan kondisi tertentu dari view\+\_\+total\+\_\+bayar.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$where} & Array kondisi filter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array Array data hasil query. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+application/models/\mbox{\hyperlink{_model_cstmr_8php}{Model\+Cstmr.\+php}}\end{DoxyCompactItemize}

@@ -2,28 +2,6 @@
     <div class="card">
         <div class="card-body">
 
-            <?php
-                $id_pelanggan = $this->session->userdata('id_pelanggan');
-                $queryRbayar = "SELECT * FROM pembayaran where id_pelanggan = '$id_pelanggan'";
-                $Rbayar = $this->db->query($queryRbayar)->result_array();
-
-                $countRbayar = $this->db->query($queryRbayar)->num_rows();
-                $nama_bulan = [
-                1 => 'Januari',
-                2 => 'Februari',
-                3 => 'Maret',
-                4 => 'April',
-                5 => 'Mei',
-                6 => 'Juni',
-                7 => 'Juli',
-                8 => 'Agustus',
-                9 => 'September',
-                10 => 'Oktober',
-                11 => 'November',
-                12 => 'Desember'
-            ];
-            ?>
-
             <div class="widget">
                 <div class="table-responsive">
                     <table class="table table-hover">

@@ -1,14 +1,38 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Controller Admin (Adm)
+ *
+ * Mengelola halaman dashboard admin aplikasi Mylistrik.
+ *
+ * @package     Application\Controllers
+ * @subpackage  Admin
+ * @category    Controller
+ * @author      Linggar Pramudia Adi
+ * @version     1.0
+ */
 class Adm extends CI_Controller
 {
+    /**
+     * Konstruktor kelas Adm
+     *
+     * Meload library form_validation dan memanggil konstruktor induk.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->library('form_validation');
     }
 
+    /**
+     * Menampilkan halaman utama dashboard Admin
+     *
+     * - Menyusun data total pelanggan, petugas, tagihan, penggunaan, dan pendapatan
+     * - Memuat semua bagian layout: header, sidebar, topbar, halaman utama, dan footer
+     *
+     * @return void
+     */
     public function index(){
         $data['title'] = 'Dashboard | Admin Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
@@ -28,6 +52,15 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+     /**
+     * Menampilkan daftar pelanggan dengan pagination.
+     *
+     * - Menampilkan data pelanggan yang digabungkan dengan tarif
+     * - Menyiapkan pagination secara manual
+     * - Menyusun semua bagian layout tampilan
+     *
+     * @return void
+     */
     public function pelanggan()
     {
         $data['title'] = 'Pelanggan | Mylistrik';
@@ -59,6 +92,13 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    
+    /**
+     * Menghapus pelanggan berdasarkan ID.
+     *
+     * @param string $id ID pelanggan yang akan dihapus
+     * @return void
+     */
     public function hapus_pelanggan($id)
     {
 
@@ -71,6 +111,15 @@ class Adm extends CI_Controller
         redirect('adm/pelanggan');
     }
 
+    /**
+     * Menambahkan pelanggan baru ke sistem.
+     *
+     * - Melakukan validasi input
+     * - Menampilkan form jika validasi gagal
+     * - Menyimpan data jika validasi sukses
+     *
+     * @return void
+     */
     public function tambah_pelanggan()
     {
         $data['title'] = 'Tambah Pelanggan | Mylistrik';
@@ -132,6 +181,16 @@ class Adm extends CI_Controller
             redirect('adm/pelanggan');
         }
     }
+    /**
+     * Menampilkan dan memproses form edit data pelanggan.
+     *
+     * - Mengambil data pelanggan berdasarkan ID dari URL segment.
+     * - Menyediakan data tarif untuk dropdown.
+     * - Melakukan validasi input form.
+     * - Jika validasi sukses, update data pelanggan ke database.
+     *
+     * @return void
+     */
     public function edit_pelanggan()
     {
         $data['title'] = 'Edit Pelanggan | Mylistrik';
@@ -190,6 +249,14 @@ class Adm extends CI_Controller
         
     }
 
+    /**
+     * Menampilkan daftar petugas dengan pagination.
+     *
+     * - Mengambil data user yang merupakan petugas (id_level = 'LVL002')
+     * - Menampilkan hasil dalam tampilan yang sudah dibagi halaman (paging)
+     *
+     * @return void
+     */
     public function petugas(){
         $data['title'] = 'Petugas | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
@@ -218,6 +285,15 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    /**
+     * Menampilkan form tambah petugas dan memproses penyimpanan data petugas baru.
+     *
+     * - Validasi input form: username, password, nama admin.
+     * - Jika validasi gagal, tampilkan kembali form tambah petugas.
+     * - Jika validasi berhasil, data petugas disimpan ke tabel user dengan level 'LVL002'.
+     *
+     * @return void
+     */
     public function tambah_petugas(){
         $data['title'] = 'Tambah Petugas | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
@@ -266,6 +342,16 @@ class Adm extends CI_Controller
 
     }
 
+    /**
+     * Menghapus data petugas berdasarkan ID.
+     *
+     * - ID petugas diambil dari parameter.
+     * - Memanggil model untuk menghapus petugas dari database.
+     * - Menampilkan pesan berhasil menggunakan flashdata.
+     *
+     * @param string $id ID dari petugas yang akan dihapus
+     * @return void
+     */
     public function hapus_petugas($id)
     {
 
@@ -278,6 +364,16 @@ class Adm extends CI_Controller
         redirect('adm/petugas');
     }
 
+    /**
+     * Menampilkan form edit petugas dan memproses update data petugas.
+     *
+     * - Mengambil data petugas berdasarkan ID dari URL segment ke-3.
+     * - Validasi input: username dan nama admin.
+     * - Jika validasi gagal, tampilkan kembali form edit.
+     * - Jika berhasil, update data petugas ke tabel user.
+     *
+     * @return void
+     */
     public function edit_petugas()
     {
         $data['title'] = 'Edit Petugas | Mylistrik';
@@ -322,6 +418,15 @@ class Adm extends CI_Controller
         
     }
 
+    /**
+     * Menampilkan daftar tarif dengan pagination.
+     *
+     * - Menampilkan data tarif dari database, 5 record per halaman.
+     * - Menghitung total halaman berdasarkan jumlah data tarif.
+     * - Memuat view admin/view_tarif dengan data yang diperlukan.
+     *
+     * @return void
+     */
     public function tarif(){
         $data['title'] = 'Petugas | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
@@ -350,6 +455,16 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    /**
+     * Menghapus data tarif berdasarkan ID.
+     *
+     * - Memanggil model untuk menghapus tarif dengan id_tarif yang diberikan.
+     * - Menampilkan pesan sukses menggunakan flashdata.
+     * - Redirect ke halaman tarif.
+     *
+     * @param string $id ID tarif yang akan dihapus.
+     * @return void
+     */
     public function hapus_tarif($id)
     {
         $this->ModelAdm->hapus_tarif($id);
@@ -409,6 +524,16 @@ class Adm extends CI_Controller
         }
     }
 
+    /**
+     * Menampilkan form tambah tarif dan memproses input data baru.
+     *
+     * - Validasi form input daya dan tarifperkwh.
+     * - Jika validasi gagal, tampilkan form tambah tarif kembali.
+     * - Jika berhasil, simpan data tarif ke database.
+     * - Menggunakan fungsi bersihkanRupiah untuk menghapus format Rupiah.
+     *
+     * @return void
+     */
     public function edit_tarif()
     {
         $data['title'] = 'Edit Tarif | Mylistrik';
@@ -462,6 +587,17 @@ class Adm extends CI_Controller
         
     }
 
+    /**
+     * Menampilkan form edit tarif dan memproses update data tarif.
+     *
+     * - Mengambil data tarif berdasarkan segment URL ke-3 (id_tarif).
+     * - Validasi form input daya dan tarifperkwh.
+     * - Jika validasi gagal, tampilkan form edit tarif kembali.
+     * - Jika berhasil, update data tarif di database.
+     * - Menggunakan fungsi bersihkanRupiah untuk membersihkan format Rupiah.
+     *
+     * @return void
+     */
     public function penggunaan()
     {
         $data['title'] = 'Penggunaan | Mylistrik';
@@ -508,6 +644,15 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    /**
+     * Menampilkan form tambah penggunaan dan memproses input penggunaan baru.
+     *
+     * - Validasi input: tahun, bulan, meter_awal, meter_akhir, dan pelanggan wajib diisi.
+     * - Jika validasi gagal, tampilkan form tambah penggunaan kembali.
+     * - Jika validasi berhasil, simpan data penggunaan ke database.
+     *
+     * @return void
+     */
     public function tambah_penggunaan(){
         $data['title'] = 'Tambah Penggunaan | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
@@ -564,6 +709,16 @@ class Adm extends CI_Controller
         }
     }
 
+    /**
+     * Menghapus data penggunaan berdasarkan ID.
+     *
+     * - Memanggil model untuk menghapus penggunaan dengan id_penggunaan yang diberikan.
+     * - Menampilkan pesan sukses menggunakan flashdata.
+     * - Redirect ke halaman tarif.
+     *
+     * @param string $id ID penggunaan yang akan dihapus.
+     * @return void
+     */
     public function hapus_penggunaan($id)
     {
         $this->ModelAdm->hapus_penggunaan($id);
@@ -575,6 +730,15 @@ class Adm extends CI_Controller
         redirect('adm/tarif');
     }
 
+    /**
+     * Menampilkan daftar tagihan dengan pagination.
+     *
+     * - Mengambil data pembayaran beserta relasi pelanggan dan tagihan.
+     * - Menyediakan nama bulan untuk tampilan.
+     * - Menghitung total halaman untuk pagination.
+     *
+     * @return void
+     */
     public function tagihan()
     {
         $data['title'] = 'Tagihan | Mylistrik';
@@ -622,6 +786,15 @@ class Adm extends CI_Controller
         $this->load->view('templates/footer');
     }
     
+    /**
+     * Menampilkan daftar pembayaran dengan status tagihan 'PAID' dan pagination.
+     *
+     * - Mengambil data pembayaran beserta relasi pelanggan, tagihan, dan user.
+     * - Menyediakan nama bulan untuk tampilan.
+     * - Menghitung total halaman untuk pagination.
+     *
+     * @return void
+     */
     public function pembayaran()
     {
         $data['title'] = 'Pembayaran | Mylistrik';
@@ -669,7 +842,7 @@ class Adm extends CI_Controller
         $this->load->view('admin/view_pembayaran', $data);
         $this->load->view('templates/footer');
     }
-
+    
     public function print_laporan_pencairan()
     {
         // Ambil semua data dari tabel pencairan
@@ -679,6 +852,14 @@ class Adm extends CI_Controller
         $this->load->view('admin/print-laporan-pencairan', $data);
     }
 
+    /**
+     * Menampilkan halaman konfirmasi pembayaran berdasarkan ID tagihan.
+     *
+     * - Mengambil data pembayaran, pelanggan, dan tagihan berdasarkan id_tagihan.
+     * - Menyediakan nama bulan untuk tampilan.
+     *
+     * @return void
+     */
     public function konfirmasi()
     {
         $data['title'] = 'konfirmasi | Mylistrik';
@@ -713,6 +894,15 @@ class Adm extends CI_Controller
         
     }
 
+    /**
+     * Proses terima konfirmasi pembayaran.
+     *
+     * - Update id_user yang memproses pembayaran.
+     * - Update status tagihan menjadi 'PAID'.
+     * - Berikan notifikasi sukses dan redirect ke halaman tagihan.
+     *
+     * @return void
+     */
     public function terima_konfirmasi(){
 
             $id_user = $this->session->userdata('id_user');
@@ -738,6 +928,16 @@ class Adm extends CI_Controller
 
             redirect('adm/tagihan');
     }
+
+    /**
+     * Proses tolak konfirmasi pembayaran.
+     *
+     * - Update id_user yang memproses pembayaran.
+     * - Update status tagihan menjadi 'UNPAID'.
+     * - Berikan notifikasi sukses dan redirect ke halaman tagihan.
+     *
+     * @return void
+     */
     public function tolak_konfirmasi(){
 
             $id_user = $this->session->userdata('id_user');
@@ -764,6 +964,14 @@ class Adm extends CI_Controller
             redirect('adm/tagihan');
     }
 
+    /**
+     * Menampilkan halaman detail pembayaran (paid) berdasarkan id_pembayaran.
+     *
+     * - Mengambil data pembayaran, pelanggan, dan tagihan.
+     * - Menyediakan nama bulan untuk tampilan.
+     *
+     * @return void
+     */
     public function paid()
     {
         $data['title'] = 'konfirmasi | Mylistrik';
@@ -797,6 +1005,15 @@ class Adm extends CI_Controller
         
     }
 
+    /**
+     * Menampilkan halaman cetak laporan pembayaran.
+     *
+     * - Mengambil semua data pembayaran beserta pelanggan dan user.
+     * - Menyediakan nama bulan untuk tampilan.
+     * - Memuat view cetak laporan pembayaran.
+     *
+     * @return void
+     */
     public function print_laporan_pembayaran()
     {
         // untuk tampilkan data pembayaran
@@ -825,9 +1042,4 @@ class Adm extends CI_Controller
         $this->load->view('admin/print_laporan_pembayaran', $data);
     }
 
-
-    
-
-
-     
 }

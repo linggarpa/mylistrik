@@ -1,9 +1,25 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * Controller Admin (Adm)
+ *
+ * Mengelola halaman login dan register Mylistrik.
+ *
+ * @package     Application\Controllers
+ * @subpackage  Auth
+ * @category    Controller
+ * @author      Linggar Pramudia Adi
+ * @version     1.0
+ */
 class Pelanggan extends CI_Controller
 {
-    
+
+     /**
+     * Halaman utama pelanggan, menampilkan daftar tagihan.
+     *
+     * @return void
+     */
     public function index(){
         $data['title'] = 'Home | Mylistrik';
         $id_pelanggan = $this->session->userdata('id_pelanggan');
@@ -41,10 +57,17 @@ class Pelanggan extends CI_Controller
             redirect('auth');
         }
     }
+
+    /**
+     * Menampilkan riwayat pembayaran pelanggan.
+     *
+     * @return void
+     */
     public function RiwayatBayar(){
         $data['title'] = 'Riwayat Bayar | Mylistrik';
         $id_pelanggan = $this->session->userdata('id_pelanggan');
-        $queryRbayar = "SELECT * FROM pembayaran where id_pelanggan = '$id_pelanggan'";
+        $status = 'PAID';
+        $queryRbayar = "SELECT * FROM pembayaran JOIN tagihan ON pembayaran.id_tagihan = tagihan.id_tagihan where  tagihan.status = 'PAID' AND pembayaran.id_pelanggan = '$id_pelanggan' ";
         $Rbayar = $this->db->query($queryRbayar)->result_array();
 
         $countRbayar = $this->db->query($queryRbayar)->num_rows();
@@ -79,6 +102,11 @@ class Pelanggan extends CI_Controller
         }
     }
 
+     /**
+     * Menampilkan halaman untuk membayar tagihan tertentu.
+     *
+     * @return void
+     */
     public function bayar()
     {
         $data['title'] = 'Bayar| Mylistrik';
@@ -111,6 +139,11 @@ class Pelanggan extends CI_Controller
         }
     }
 
+    /**
+     * Menampilkan halaman detail pembayaran.
+     *
+     * @return void
+     */
     public function halamanBayar(){
         $data['title'] = 'Pembayaran| Mylistrik';
         if ($this->session->userdata('username')) {
@@ -144,6 +177,13 @@ class Pelanggan extends CI_Controller
         }
     }
 
+    /**
+     * Proses pembayaran tagihan.
+     * Validasi nominal pembayaran harus sama dengan total tagihan.
+     * Jika valid, simpan data pembayaran dan update status tagihan menjadi PROCESS.
+     *
+     * @return void
+     */
     public function GoBayar(){
         function bersihkanRupiah($string)
         {

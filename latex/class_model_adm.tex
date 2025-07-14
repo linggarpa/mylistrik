@@ -1,0 +1,258 @@
+\doxysection{Model\+Adm Class Reference}
+\hypertarget{class_model_adm}{}\label{class_model_adm}\index{ModelAdm@{ModelAdm}}
+Inheritance diagram for Model\+Adm\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model_adm}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_model_adm_ae1fcf966067f4ee079e26f0e661c7bdd}{cek\+Data}} (\$where=null)
+\item 
+\mbox{\hyperlink{class_model_adm_a70de2872b1a7a64f7500692cb56c422e}{hapus\+\_\+pelanggan}} (\$id)
+\item 
+\mbox{\hyperlink{class_model_adm_a53bbadc1306616955ec506fa5bab8afc}{plg\+Where}} (\$where)
+\item 
+\mbox{\hyperlink{class_model_adm_a820459d1f330fea8ae876da1b869e7be}{petugas\+Where}} (\$where)
+\item 
+\mbox{\hyperlink{class_model_adm_acb6e0e9efebf1217cdc2a867667ecdf1}{update\+Pelanggan}} (\$data=null, \$where=null)
+\item 
+\mbox{\hyperlink{class_model_adm_a4fbe59552247d757fb319b4d7df52936}{simpan\+Data}} (\$table, \$data)
+\item 
+\mbox{\hyperlink{class_model_adm_a2e233c44e64b5105f1c3b767c22b94f1}{hapus\+\_\+petugas}} (\$id)
+\item 
+\mbox{\hyperlink{class_model_adm_a0b1c1ae983d4707fdbdc19f01d88c45c}{update\+Petugas}} (\$data=null, \$where=null)
+\item 
+\mbox{\hyperlink{class_model_adm_af6828a82f46f6e3da00b776d1196d905}{update\+Tarif}} (\$data=null, \$where=null)
+\item 
+\mbox{\hyperlink{class_model_adm_a7c4fbb20cc96c5689d606408239c2eeb}{hapus\+\_\+tarif}} (\$id)
+\item 
+\mbox{\hyperlink{class_model_adm_ab0b016b49eeb6152abb3b23b1fce75d2}{hapus\+\_\+penggunaan}} (\$id)
+\item 
+\mbox{\hyperlink{class_model_adm_ac1b6818093fb298e4f5ca62501b0d665}{hapus\+\_\+tagihan}} (\$id)
+\item 
+\mbox{\hyperlink{class_model_adm_aaf490a389a580215b759750acabb7928}{get\+\_\+all\+\_\+pelanggan}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_model_adm_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_model_adm_ae1fcf966067f4ee079e26f0e661c7bdd}\index{ModelAdm@{ModelAdm}!cekData@{cekData}}
+\index{cekData@{cekData}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{cekData()}{cekData()}}
+{\footnotesize\ttfamily \label{class_model_adm_ae1fcf966067f4ee079e26f0e661c7bdd} 
+Model\+Adm\+::cek\+Data (\begin{DoxyParamCaption}\item[{}]{\$where}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Ambil data user berdasarkan kondisi tertentu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$where} & Array kondisi untuk filter data user. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+CI\+\_\+\+DB\+\_\+result Query result object. 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_aaf490a389a580215b759750acabb7928}\index{ModelAdm@{ModelAdm}!get\_all\_pelanggan@{get\_all\_pelanggan}}
+\index{get\_all\_pelanggan@{get\_all\_pelanggan}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{get\_all\_pelanggan()}{get\_all\_pelanggan()}}
+{\footnotesize\ttfamily \label{class_model_adm_aaf490a389a580215b759750acabb7928} 
+Model\+Adm\+::get\+\_\+all\+\_\+pelanggan (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Ambil semua data pelanggan.
+
+\begin{DoxyReturn}{Returns}
+array Array data pelanggan. 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a70de2872b1a7a64f7500692cb56c422e}\index{ModelAdm@{ModelAdm}!hapus\_pelanggan@{hapus\_pelanggan}}
+\index{hapus\_pelanggan@{hapus\_pelanggan}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{hapus\_pelanggan()}{hapus\_pelanggan()}}
+{\footnotesize\ttfamily \label{class_model_adm_a70de2872b1a7a64f7500692cb56c422e} 
+Model\+Adm\+::hapus\+\_\+pelanggan (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Hapus data pelanggan berdasarkan ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id} & ID pelanggan yang akan dihapus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_ab0b016b49eeb6152abb3b23b1fce75d2}\index{ModelAdm@{ModelAdm}!hapus\_penggunaan@{hapus\_penggunaan}}
+\index{hapus\_penggunaan@{hapus\_penggunaan}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{hapus\_penggunaan()}{hapus\_penggunaan()}}
+{\footnotesize\ttfamily \label{class_model_adm_ab0b016b49eeb6152abb3b23b1fce75d2} 
+Model\+Adm\+::hapus\+\_\+penggunaan (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Hapus data penggunaan berdasarkan ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id} & ID penggunaan yang akan dihapus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a2e233c44e64b5105f1c3b767c22b94f1}\index{ModelAdm@{ModelAdm}!hapus\_petugas@{hapus\_petugas}}
+\index{hapus\_petugas@{hapus\_petugas}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{hapus\_petugas()}{hapus\_petugas()}}
+{\footnotesize\ttfamily \label{class_model_adm_a2e233c44e64b5105f1c3b767c22b94f1} 
+Model\+Adm\+::hapus\+\_\+petugas (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Hapus data petugas/user berdasarkan ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id} & ID user yang akan dihapus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_ac1b6818093fb298e4f5ca62501b0d665}\index{ModelAdm@{ModelAdm}!hapus\_tagihan@{hapus\_tagihan}}
+\index{hapus\_tagihan@{hapus\_tagihan}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{hapus\_tagihan()}{hapus\_tagihan()}}
+{\footnotesize\ttfamily \label{class_model_adm_ac1b6818093fb298e4f5ca62501b0d665} 
+Model\+Adm\+::hapus\+\_\+tagihan (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Hapus data tagihan berdasarkan ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id} & ID tagihan yang akan dihapus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a7c4fbb20cc96c5689d606408239c2eeb}\index{ModelAdm@{ModelAdm}!hapus\_tarif@{hapus\_tarif}}
+\index{hapus\_tarif@{hapus\_tarif}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{hapus\_tarif()}{hapus\_tarif()}}
+{\footnotesize\ttfamily \label{class_model_adm_a7c4fbb20cc96c5689d606408239c2eeb} 
+Model\+Adm\+::hapus\+\_\+tarif (\begin{DoxyParamCaption}\item[{}]{\$id}{}\end{DoxyParamCaption})}
+
+Hapus data tarif berdasarkan ID.
+
+
+\begin{DoxyParams}[1]{Parameters}
+int | string & {\em \$id} & ID tarif yang akan dihapus. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a820459d1f330fea8ae876da1b869e7be}\index{ModelAdm@{ModelAdm}!petugasWhere@{petugasWhere}}
+\index{petugasWhere@{petugasWhere}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{petugasWhere()}{petugasWhere()}}
+{\footnotesize\ttfamily \label{class_model_adm_a820459d1f330fea8ae876da1b869e7be} 
+Model\+Adm\+::petugas\+Where (\begin{DoxyParamCaption}\item[{}]{\$where}{}\end{DoxyParamCaption})}
+
+Ambil data petugas/user berdasarkan kondisi tertentu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$where} & Array kondisi untuk filter data user. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+CI\+\_\+\+DB\+\_\+result Query result object. 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a53bbadc1306616955ec506fa5bab8afc}\index{ModelAdm@{ModelAdm}!plgWhere@{plgWhere}}
+\index{plgWhere@{plgWhere}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{plgWhere()}{plgWhere()}}
+{\footnotesize\ttfamily \label{class_model_adm_a53bbadc1306616955ec506fa5bab8afc} 
+Model\+Adm\+::plg\+Where (\begin{DoxyParamCaption}\item[{}]{\$where}{}\end{DoxyParamCaption})}
+
+Ambil data pelanggan berdasarkan kondisi tertentu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$where} & Array kondisi untuk filter data pelanggan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+CI\+\_\+\+DB\+\_\+result Query result object. 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a4fbe59552247d757fb319b4d7df52936}\index{ModelAdm@{ModelAdm}!simpanData@{simpanData}}
+\index{simpanData@{simpanData}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{simpanData()}{simpanData()}}
+{\footnotesize\ttfamily \label{class_model_adm_a4fbe59552247d757fb319b4d7df52936} 
+Model\+Adm\+::simpan\+Data (\begin{DoxyParamCaption}\item[{}]{\$table}{, }\item[{}]{\$data}{}\end{DoxyParamCaption})}
+
+Simpan data ke tabel tertentu.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$table} & Nama tabel. \\
+\hline
+array & {\em \$data} & Array data yang akan disimpan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True jika berhasil, false jika gagal. 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_acb6e0e9efebf1217cdc2a867667ecdf1}\index{ModelAdm@{ModelAdm}!updatePelanggan@{updatePelanggan}}
+\index{updatePelanggan@{updatePelanggan}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{updatePelanggan()}{updatePelanggan()}}
+{\footnotesize\ttfamily \label{class_model_adm_acb6e0e9efebf1217cdc2a867667ecdf1} 
+Model\+Adm\+::update\+Pelanggan (\begin{DoxyParamCaption}\item[{}]{\$data}{ = {\ttfamily null}, }\item[{}]{\$where}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Update data pelanggan.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$data} & Array data yang akan diupdate. \\
+\hline
+array | null & {\em \$where} & Array kondisi untuk memilih record yang akan diupdate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_a0b1c1ae983d4707fdbdc19f01d88c45c}\index{ModelAdm@{ModelAdm}!updatePetugas@{updatePetugas}}
+\index{updatePetugas@{updatePetugas}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{updatePetugas()}{updatePetugas()}}
+{\footnotesize\ttfamily \label{class_model_adm_a0b1c1ae983d4707fdbdc19f01d88c45c} 
+Model\+Adm\+::update\+Petugas (\begin{DoxyParamCaption}\item[{}]{\$data}{ = {\ttfamily null}, }\item[{}]{\$where}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Update data petugas/user.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$data} & Array data yang akan diupdate. \\
+\hline
+array | null & {\em \$where} & Array kondisi untuk memilih record yang akan diupdate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_model_adm_af6828a82f46f6e3da00b776d1196d905}\index{ModelAdm@{ModelAdm}!updateTarif@{updateTarif}}
+\index{updateTarif@{updateTarif}!ModelAdm@{ModelAdm}}
+\doxysubsubsection{\texorpdfstring{updateTarif()}{updateTarif()}}
+{\footnotesize\ttfamily \label{class_model_adm_af6828a82f46f6e3da00b776d1196d905} 
+Model\+Adm\+::update\+Tarif (\begin{DoxyParamCaption}\item[{}]{\$data}{ = {\ttfamily null}, }\item[{}]{\$where}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+Update data tarif.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | null & {\em \$data} & Array data yang akan diupdate. \\
+\hline
+array | null & {\em \$where} & Array kondisi untuk memilih record yang akan diupdate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+application/models/\mbox{\hyperlink{_model_adm_8php}{Model\+Adm.\+php}}\end{DoxyCompactItemize}

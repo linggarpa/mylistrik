@@ -1,0 +1,95 @@
+\doxysection{Auth Class Reference}
+\hypertarget{class_auth}{}\label{class_auth}\index{Auth@{Auth}}
+Inheritance diagram for Auth\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_auth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_auth_a1122c0e05dda3c229030a4246420f62c}{\+\_\+\+\_\+construct}} ()
+\item 
+\mbox{\hyperlink{class_auth_a731a68cd315d7411829386a75edb9b6d}{index}} ()
+\item 
+\mbox{\hyperlink{class_auth_aec298eb129aacb89b26397d2db94b87c}{register}} ()
+\item 
+\mbox{\hyperlink{class_auth_af8d93e1fc0f4e93c8d58effd43d035e0}{loginadm}} ()
+\item 
+\mbox{\hyperlink{class_auth_acbbcb54916a234d1d816ec85e4a88d5e}{logout}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Linggar Pramudia Adi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\label{doc-constructors}
+\Hypertarget{class_auth_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_auth_a1122c0e05dda3c229030a4246420f62c}\index{Auth@{Auth}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \label{class_auth_a1122c0e05dda3c229030a4246420f62c} 
+Auth\+::\+\_\+\+\_\+construct (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Konstruktor, load library form\+\_\+validation 
+
+\label{doc-func-members}
+\Hypertarget{class_auth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_auth_a731a68cd315d7411829386a75edb9b6d}\index{Auth@{Auth}!index@{index}}
+\index{index@{index}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily \label{class_auth_a731a68cd315d7411829386a75edb9b6d} 
+Auth\+::index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Halaman login pelanggan, validasi form, dan proses login. Jika validasi gagal, tampilkan halaman login. Jika berhasil, panggil \+\_\+login().
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_auth_af8d93e1fc0f4e93c8d58effd43d035e0}\index{Auth@{Auth}!loginadm@{loginadm}}
+\index{loginadm@{loginadm}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{loginadm()}{loginadm()}}
+{\footnotesize\ttfamily \label{class_auth_af8d93e1fc0f4e93c8d58effd43d035e0} 
+Auth\+::loginadm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Halaman login admin. Validasi form dan proses login admin.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_auth_acbbcb54916a234d1d816ec85e4a88d5e}\index{Auth@{Auth}!logout@{logout}}
+\index{logout@{logout}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily \label{class_auth_acbbcb54916a234d1d816ec85e4a88d5e} 
+Auth\+::logout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Logout user/admin dan destroy session.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{class_auth_aec298eb129aacb89b26397d2db94b87c}\index{Auth@{Auth}!register@{register}}
+\index{register@{register}!Auth@{Auth}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{class_auth_aec298eb129aacb89b26397d2db94b87c} 
+Auth\+::register (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Halaman registrasi pelanggan. Validasi input, simpan data pelanggan baru jika valid.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+application/controllers/\mbox{\hyperlink{_auth_8php}{Auth.\+php}}\end{DoxyCompactItemize}

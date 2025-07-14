@@ -11,12 +11,12 @@
                     <form action="<?= base_url('adm/edit_tarif/') ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_tarif" value="<?= $t['id_tarif'] ?>">
                         <div class="form-group">
-                            <label for="daya" class="col-sm-2 col-form-label">daya</label>
+                            <label for="daya" class="col-sm-2 col-form-label">Daya</label>
                             <input type="text" class="form-control form-control-user" id="daya" name="daya" value="<?= $t['daya'] ?>">
                             <small class="text-danger"><?php echo form_error('daya'); ?></small>
                         </div>          
                         <div class="form-group">
-                            <label for="tarifperkwh" class="col-sm-2 col-form-label"></label>
+                            <label for="tarifperkwh" class="col-sm-2 col-form-label">Tarif PerKWH</label>
                             <input type="text" class="form-control form-control-user" onkeyup="formatInputRupiah(this)" id="tarifperkwh" name="tarifperkwh" value="<?= $t['tarifperkwh'] ?>">
                             <small class="text-danger"><?php echo form_error('tarifperkwh'); ?></small>
                         </div>

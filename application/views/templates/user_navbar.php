@@ -7,7 +7,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 fs-5" style="margin-top: -5px;">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="<?= base_url('pelanggan'); ?>">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('pelanggan/riwayatbayar'); ?>">Riwayat pembayaran</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/logout'); ?>">Logout</a></li>               
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Akun</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('pelanggan/profile'); ?>">
+                                    <i class="fas fa-fw fa-user"></i>Profile Saya
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">
+                                    <i class="fas fa-fw fa-sign-out-alt"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                </li>           
             </ul>
         </div>
     </div>

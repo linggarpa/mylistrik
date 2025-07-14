@@ -1042,4 +1042,43 @@ class Adm extends CI_Controller
         $this->load->view('admin/print_laporan_pembayaran', $data);
     }
 
+    public function profile()
+    {
+        $data['title'] = 'Profile| Mylistrik';
+        if ($this->session->userdata('username')) {
+            $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
+            $where = $this->session->userdata('id_user');  
+            $queryPembayaran = "SELECT * FROM user WHERE id_user = '$where'";
+            $data['profile']= $this->db->query($queryPembayaran)->result_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/profile.php', $data);
+            $this->load->view('templates/footer');
+
+        }else{
+            redirect('auth');
+        }
+    }
+
+    public function edit_profile()
+    {
+        $data = [
+            'username' => htmlspecialchars($this->input->post('username')),        
+            'nama_admin' => htmlspecialchars($this->input->post('nama_admin')),
+        ];
+         // Update data pelanggan di database
+        $this->ModelAdm->updatePetugas($data, ['id_user' => $this->session->userdata('id_user')]);
+        $this->session->set_userdata('username', $this->input->post('username'));
+        // Tampilkan notifikasi sukses
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success alert-message" role="alert">Selamat!! 
+                user berhasil diubah</div>
+            <meta http-equiv="refresh" content="2">'
+        );
+        // Redirect kembali ke halaman profil
+        redirect('adm/profile');
+    }
+
 }

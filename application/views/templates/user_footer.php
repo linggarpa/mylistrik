@@ -1,5 +1,5 @@
 <!-- Footer-->
-        <footer class="py-5 bg-dark mt-5" style="width: 100%;">
+        <footer class="py-4 bg-dark mt-auto">
             <div class="container text-end mb-2">
                 <a class="text-light fs-4 me-2 " href=""><i class="fab fa-instagram"></i></a>
                 <a class="text-light fs-4 me-2"><i class="fab fa-facebook"></i></a>

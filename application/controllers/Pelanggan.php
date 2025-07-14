@@ -235,5 +235,144 @@ class Pelanggan extends CI_Controller
             redirect('pelanggan');
     }
 
+    /**
+     * Menampilkan halaman profil pelanggan.
+     *
+     * Menyiapkan data pelanggan dan profil berdasarkan sesi login, 
+     * lalu memuat tampilan profil pelanggan jika user sudah login.
+     * Jika tidak login, akan diarahkan ke halaman autentikasi.
+     *
+     * @return void
+     */
+    public function profile()
+    {
+        $data['title'] = 'Profile| Mylistrik';
+        if ($this->session->userdata('username')) {
+            $data['pelanggan'] = $this->ModelCstmr->cekData(['username' => $this->session->userdata('username')])->row_array();
+            $where = ['id_pelanggan' =>$this->session->userdata('id_pelanggan')];  
+            $data['profile'] = $this->ModelCstmr->viewprofile($where);
+            $this->load->view('templates/user_header', $data);
+            $this->load->view('templates/user_navbar', $data);
+            $this->load->view('pelanggan/profile.php', $data);
+            $this->load->view('templates/user_footer');
+
+        }else{
+            redirect('auth');
+        }
+    }
+
+    /**
+     * Mengedit data profil pelanggan.
+     *
+     * Validasi input terlebih dahulu. Jika lolos validasi, update data
+     * pelanggan ke database berdasarkan `id_pelanggan` dari session.
+     *
+     * @return void
+     */
+    public function edit_profile()
+    {
+         // Validasi form input
+        $this->form_validation->set_rules('username', 'username', 'required', [
+            'required' => 'Username Belum diisi!!'
+        ]);
+
+        $this->form_validation->set_rules('nomor_kwh', 'Nomor KWH', 'required', [
+            'required' => 'nomor kwh Belum diisi!!',
+        ]);
+        $this->form_validation->set_rules('nama_pelanggan', 'nama', 'required', [
+            'required' => 'nama Belum diisi!!',
+        ]);
+        $this->form_validation->set_rules('alamat', 'alamat', 'required', [
+            'required' => 'alamat Belum diisi!!',
+        ]);
+        $this->form_validation->set_rules('tarif', 'tarif', 'required', [
+            'required' => 'tarif Belum diisi!!',
+        ]);
+
+         // Jika validasi gagal, redirect kembali ke halaman profil
+        if ($this->form_validation->run() == false) {
+            redirect('pelanggan/profile');
+        }else{
+             // Ambil data dari form input
+             $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),        
+                'nomor_kwh' => htmlspecialchars($this->input->post('nomor_kwh', true)),
+                'nama_pelanggan' => htmlspecialchars($this->input->post('nama_pelanggan', true)),
+                'alamat' => $this->input->post('alamat', true),
+                'id_tarif' => $this->input->post('tarif', true),
+            ];
+             // Update data pelanggan di database
+            $this->ModelCstmr->updatePelanggan($data, ['id_pelanggan' => $this->session->userdata('id_pelanggan')]);
+            // Tampilkan notifikasi sukses
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success alert-message" role="alert">Selamat!! 
+                    pelanggan berhasil diubah</div>
+                    <meta http-equiv="refresh" content="2">'
+            );
+            // Redirect kembali ke halaman profil
+            redirect('pelanggan/profile');
+        }
+    }
+    /**
+     * Mengubah password pelanggan.
+     *
+     * Mengecek validitas password lama dan kesesuaian konfirmasi password baru,
+     * lalu memperbarui password pelanggan ke database jika semua validasi terpenuhi.
+     *
+     * @return void
+     */
+    public function ubah_password()
+    {
+    $data['title'] = 'Profile | Mylistrik';
+
+    if (!$this->session->userdata('username')) {
+        redirect('auth');
+    }
+
+    // Ambil data pelanggan & profil
+    $data['pelanggan'] = $this->ModelCstmr->cekData(['username' => $this->session->userdata('username')])->row_array();
+    $where = ['id_pelanggan' => $this->session->userdata('id_pelanggan')];  
+    $data['profile'] = $this->ModelCstmr->viewprofile($where);
+
+    // Cek apakah ini request POST (submit form)
+    if ($this->input->server('REQUEST_METHOD') === 'POST') {
+        $password_lama       = $this->input->post('password_lama');
+        $password_baru       = $this->input->post('password_baru');
+        $konfirmasi_password = $this->input->post('konfirmasi_password');
+
+        // Ambil hash password dari database
+        $user = $this->ModelCstmr->cekData(['username' => $this->session->userdata('username')])->row_array();
+
+        // Verifikasi password lama
+        if (!password_verify($password_lama, $this->session->userdata('password'))) {
+            $this->session->set_flashdata('error', 'Password lama salah. <meta http-equiv="refresh" content="2">');
+            redirect('pelanggan/ubah_password');
+        }
+
+        // Cek konfirmasi password
+        if ($password_baru !== $konfirmasi_password) {
+            $this->session->set_flashdata('error', 'Konfirmasi password tidak cocok. <meta http-equiv="refresh" content="2">');
+            redirect('pelanggan/ubah_password');
+        }
+
+        // Update password baru (hash)
+        $hash_baru = password_hash($password_baru, PASSWORD_DEFAULT);
+        $this->db->where('id_pelanggan', $this->session->userdata('id_pelanggan'));
+        $this->db->update('pelanggan', ['password' => $hash_baru]);
+
+        $this->session->set_flashdata('pesan',
+                '<div class="alert alert-success alert-message" role="alert">Selamat!! 
+                    pelanggan berhasil diubah</div>
+                    <meta http-equiv="refresh" content="2">');
+        redirect('pelanggan/profile');
+    }
+
+        // Load view
+        $this->load->view('templates/user_header', $data);
+        $this->load->view('templates/user_navbar', $data);
+        $this->load->view('pelanggan/ubah_password.php', $data);
+        $this->load->view('templates/user_footer');
+    }
     
 }

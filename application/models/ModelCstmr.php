@@ -75,4 +75,39 @@ class ModelCstmr extends CI_Model
         $this->db->insert('pembayaran', $data);
     }
 
+    /**
+     * Menampilkan data profil pelanggan beserta data tarif terkait.
+     *
+     * Fungsi ini mengambil data dari tabel `pelanggan` dan melakukan join 
+     * dengan tabel `tarif` berdasarkan `id_tarif`. Parameter `$where` digunakan 
+     * untuk menyaring hasil query sesuai dengan kondisi yang diberikan.
+     *
+     * @param array $where Kondisi WHERE untuk query (misalnya: ['id_pelanggan' => 1]).
+     * @return array Hasil query dalam bentuk array asosiatif.
+     */
+    public function viewprofile($where)
+    {
+        $this->db->select('pelanggan.*, tarif.*');
+        $this->db->from('pelanggan');
+        $this->db->join('tarif', 'pelanggan.id_tarif = tarif.id_tarif');
+        $this->db->where($where);
+        return $this->db->get()->result_array();
+    }
+    /**
+     * Memperbarui data pelanggan di tabel `pelanggan`.
+     *
+     * Fungsi ini melakukan update data berdasarkan kondisi `$where` yang diberikan.
+     * Data yang diupdate diberikan melalui parameter `$data`.
+     *
+     * @param array|null $data Data yang akan diperbarui (misalnya: ['nama' => 'Ahmad']).
+     * @param array|null $where Kondisi WHERE untuk menentukan baris yang akan diupdate 
+     *                          (misalnya: ['id_pelanggan' => 1]).
+     * @return void
+     */
+    public function updatePelanggan($data = null, $where = null)
+    {
+        $this->db->update('pelanggan', $data, $where);
+    }
+
+
 }

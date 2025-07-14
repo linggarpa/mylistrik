@@ -153,4 +153,9 @@ class ModelAdm extends CI_Model
         return $this->db->get('pelanggan')->result_array();
     }
 
+     public function get_user_by_id($id)
+    {
+        return $this->db->get_where('user', ['id_user' => $id])->row_array();
+    }
+
 }

@@ -428,6 +428,8 @@ class Adm extends CI_Controller
      * @return void
      */
     public function tarif(){
+        // log_message('debug', 'Fungsi tarif() dipanggil');
+        // $mem_before = memory_get_usage();
         $data['title'] = 'Petugas | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
         
@@ -439,20 +441,24 @@ class Adm extends CI_Controller
         // Get the records for the current page
         $queryTarif = "SELECT * FROM tarif ORDER BY id_tarif desc LIMIT $limit OFFSET $offset";
         $data['tarif']= $this->db->query($queryTarif)->result_array();
-
+        // log_message('debug', 'Jumlah tarif di halaman ini: ' . count($data['tarif']));
         // Count the total number of records to calculate the number of pages
-        $totalRecords = $this->db->query("SELECT COUNT(*) as total FROM user where id_level='LVL002'")->row()->total;
+        $totalRecords = $this->db->query("SELECT COUNT(*) as total FROM tarif")->row()->total;
         $data['totalPages'] = ceil($totalRecords / $limit);
         $data['page'] = $page;
         $data['offset'] = $offset;
-
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/view_tarif', $data);
         $this->load->view('templates/footer');
+
+        // $mem_after = memory_get_usage();
+        // $mem_peak = memory_get_peak_usage();
+
+        // log_message('debug', 'Memory used by tarif(): ' . ($mem_after - $mem_before) . ' bytes');
+        // log_message('debug', 'Peak memory usage so far: ' . $mem_peak . ' bytes');
     }
 
     /**
@@ -952,12 +958,15 @@ class Adm extends CI_Controller
             $this->db->where('id_tagihan', $id_tagihan);
             $this->db->update('tagihan', ['status' => 'UNPAID']);
 
+            // Hapus record pembayaran
+            $this->db->where('id_pembayaran', $id_pembayaran);
+            $this->db->delete('pembayaran');
             
 
             // Notifikasi + redirect
             $this->session->set_flashdata(
                 'pesan',
-                '<div class="alert alert-success alert-message" role="alert">Pembayaran berhasil diproses!</div>
+                '<div class="alert alert-danger alert-message" role="alert">Pembayaran gagal diproses!</div>
                 <meta http-equiv="refresh" content="2">'
             );
 

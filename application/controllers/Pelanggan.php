@@ -201,9 +201,10 @@ class Pelanggan extends CI_Controller
             'pesan',
             '<div class="alert alert-danger alert-message" role="alert">
                 Nominal pembayaran tidak sesuai dengan total tagihan. Silakan coba lagi.
+                <meta http-equiv="refresh" content="2">
             </div>'
         );
-        redirect('pelanggan/pembayaran/' . $id_tagihan);
+        redirect('pelanggan/halamanBayar/' . $id_tagihan);
         return; // hentikan eksekusi
         }
 

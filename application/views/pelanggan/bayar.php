@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center" style="margin-top: 150px;">
+<div class="container d-flex justify-content-center" style="margin-top: 115px;">
     <div class="card shadow mb-4" style="max-width: 500px; width: 100%;">
         <div class="card-body">
             

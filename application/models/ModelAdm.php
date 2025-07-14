@@ -153,9 +153,19 @@ class ModelAdm extends CI_Model
         return $this->db->get('pelanggan')->result_array();
     }
 
-     public function get_user_by_id($id)
+    public function get_user_by_id($id)
     {
         return $this->db->get_where('user', ['id_user' => $id])->row_array();
+    }
+
+    public function countTarif() {
+        return $this->db->count_all('tarif');
+    }
+
+    public function getTarifLimit($limit, $offset) {
+        $this->db->order_by('id_tarif', 'desc');
+        $query = $this->db->get('tarif', $limit, $offset);
+        return $query->result_array();
     }
 
 }

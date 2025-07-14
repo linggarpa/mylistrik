@@ -16,7 +16,7 @@
                 foreach ($pembayaran as $p) {
                 $totalbyr= $p['total_bayar'] + 2500
             ?>
-
+        <?= $this->session->flashdata('pesan'); ?>
         <div class="card shadow">
           <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Nomor Tagihan: <?php echo $p['id_tagihan']; ?></h5>

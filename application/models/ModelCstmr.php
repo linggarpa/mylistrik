@@ -109,5 +109,4 @@ class ModelCstmr extends CI_Model
         $this->db->update('pelanggan', $data, $where);
     }
 
-
 }

@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center" style="margin-top: 150px;">
+<div class="container d-flex justify-content-center" style="margin-top: 115px;">
     <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
         <div class="card-body">
             <?php if ($this->session->flashdata('success')): ?>

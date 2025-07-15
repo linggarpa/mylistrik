@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6">
               <label for="username" class="form-label">Username:</label>
-              <input type="text" id="username" class="form-control" value="<?= $p['nama_pelanggan'] ?>" name="nama_pelanggan">
+              <input type="text" id="username" class="form-control" value="<?= $p['username'] ?>" name="username">
                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
           </div>
@@ -26,7 +26,7 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="namaLengkap" class="form-label">Nama Lengkap:</label>
-              <input type="text" id="nama_pelanggan" class="form-control" value="<?= $p['username'] ?>" name="username">
+              <input type="text" id="nama_pelanggan" class="form-control" value="<?= $p['nama_pelanggan'] ?>" name="nama_pelanggan">
                 <?= form_error('nama_pelanggan', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
             <div class="col-md-6">

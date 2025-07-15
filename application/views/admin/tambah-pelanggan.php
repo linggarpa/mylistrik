@@ -25,7 +25,7 @@
                         <input type="hidden" name="id_pelanggan" value="<?= $ID ?>">
                         <div class="form-group">
                             <label for="username" class="col-sm-2 col-form-label">Username</label>
-                            <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Masukkan Username">
+                            <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Masukkan Username" value="<?= set_value('username');?>">
                             <small class="text-danger"><?php echo form_error('username'); ?></small>
                         </div>          
                         <div class="form-group">
@@ -35,26 +35,26 @@
                         </div>
                         <div class="form-group">
                             <label for="nomor_kwh" class="col-sm-2 col-form-label">Nomor KWH</label>
-                            <input type="number" class="form-control form-control-user" id="nomor_kwh" name="nomor_kwh" placeholder="Masukkan Nomor KWH">
+                            <input type="number" class="form-control form-control-user" id="nomor_kwh" name="nomor_kwh" placeholder="Masukkan Nomor KWH" value="<?= set_value('nomor_kwh');?>">
                             <small class="text-danger"><?php echo form_error('nomor_kwh'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="nama_pelanggan" class="col-sm-2 col-form-label">Nama Pelanggan</label>
-                            <input type="text" class="form-control form-control-user" id="nama_pelanggan" name="nama_pelanggan" placeholder="Masukkan Nama">
+                            <input type="text" class="form-control form-control-user" id="nama_pelanggan" name="nama_pelanggan" placeholder="Masukkan Nama" value="<?= set_value('nama_pelanggan'); ?>">
                             <small class="text-danger"><?php echo form_error('nama_pelanggan'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                            <textarea type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Masukkan Alamat"></textarea>
+                            <textarea type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Masukkan Alamat" ></textarea>
                             <small class="text-danger"><?php echo form_error('alamat'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="tarif" class="col-sm-2 col-form-label">Daya</label>
-                            <select name="tarif" class="form-control form-control-user">
+                            <select name="tarif" class="form-control form-control-user" >
                                 <option value="">Pilih Daya</option>
                                 <?php
                                 foreach ($tarif as $t) { ?>
-                                    <option value="<?= $t['id_tarif']; ?>"><?= $t['daya']; ?>KWH</option> <?php } ?>
+                                    <option value="<?= $t['id_tarif']; ?>" <?= set_select('tarif', $t['id_tarif']); ?>><?= $t['daya']; ?>KWH</option> <?php } ?>
                             </select>
                             <small class="text-danger"><?php echo form_error('tarif'); ?></small>
                         </div>

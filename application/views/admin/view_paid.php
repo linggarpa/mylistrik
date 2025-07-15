@@ -37,7 +37,7 @@
                     </tr>
                     <tr class="border-top">
                         <td><strong>Total Tagihan</strong></td>
-                        <td><strong>Rp <?= number_format($k['total_bayar'] + 2500, 2, ',', '.') ?></strong></td>
+                        <td><strong>Rp <?= number_format($k['total_bayar'], 2, ',', '.') ?></strong></td>
                     </tr>
                 </table>
 

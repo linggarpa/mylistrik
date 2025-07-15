@@ -10,7 +10,7 @@ class UnitTest extends CI_Controller {
     public function test_tambah_tarif()
     {
     // Step 1: Data tarif dummy
-    $id_tarif = 'T999'; // Gunakan ID unik agar tidak bentrok
+    $id_tarif = 'TRF003'; // Gunakan ID unik agar tidak bentrok
     $data_tarif = [
         'id_tarif' => $id_tarif,
         'daya' => '2200VA',

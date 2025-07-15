@@ -114,8 +114,9 @@ class Auth extends CI_Controller
         $data['idP'] = $this->db->query($queryIDUser)->result_array();
 
         // Mengatur aturan validasi untuk input username (wajib diisi)
-        $this->form_validation->set_rules('username', 'Nama Lengkap', 'required', [
-            'required' => 'Nama Belum diisi!!'
+        $this->form_validation->set_rules('username', 'Nama Lengkap', 'required|is_unique[pelanggan.username]', [
+            'required' => 'Username Belum diisi!!',
+            'is_unique' => 'Username sudah terdaftar!'
         ]);
          // Aturan validasi untuk password: wajib diisi, di-trim, dan minimal 3 karakter
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [ 
@@ -124,8 +125,9 @@ class Auth extends CI_Controller
         ]);
 
         // Aturan validasi untuk nomor KWH (wajib diisi)
-        $this->form_validation->set_rules('nomor_kwh', 'Nomor KWH', 'required', [
-            'required' => 'nomor kwh Belum diisi!!',
+        $this->form_validation->set_rules('nomor_kwh', 'Nomor KWH', 'required|is_unique[pelanggan.nomor_kwh]', [
+            'required' => 'Nomor KWH Belum diisi!!',
+            'is_unique' => 'Nomor KWH sudah terdaftar!'
         ]);
         // Aturan validasi untuk nama pelanggan (wajib diisi)
         $this->form_validation->set_rules('nama_pelanggan', 'nama', 'required', [
@@ -255,7 +257,7 @@ class Auth extends CI_Controller
         redirect('auth');
     }
 
-    public function logoutAdm()
+    public function logout_Adm()
     {
         $this->session->sess_destroy();
 

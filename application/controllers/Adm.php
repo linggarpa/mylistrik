@@ -129,8 +129,9 @@ class Adm extends CI_Controller
        
 
 
-        $this->form_validation->set_rules('username', 'username', 'required', [
-            'required' => 'Username Belum diisi!!'
+        $this->form_validation->set_rules('username', 'username', 'required|is_unique[pelanggan.username]', [
+            'required' => 'Username Belum diisi!!',
+            'is_unique' => 'username sudah terdaftar'
         ]);
 
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [ 
@@ -139,8 +140,10 @@ class Adm extends CI_Controller
         ]);
 
 
-        $this->form_validation->set_rules('nomor_kwh', 'Nomor KWH', 'required', [
+        $this->form_validation->set_rules('nomor_kwh', 'Nomor KWH', 'required|is_unique[pelanggan.nomor_kwh]|min_length[11]', [
             'required' => 'nomor kwh Belum diisi!!',
+            'is_unique' => 'nomor kwh sudah terdaftar',
+            'min_length' => 'Nomor KWH Terlalu Pendek'   
         ]);
         $this->form_validation->set_rules('nama_pelanggan', 'nama pelanggan', 'required', [
             'required' => 'nama Belum diisi!!',
@@ -430,7 +433,7 @@ class Adm extends CI_Controller
     public function tarif(){
         // log_message('debug', 'Fungsi tarif() dipanggil');
         // $mem_before = memory_get_usage();
-        $data['title'] = 'Petugas | Mylistrik';
+        $data['title'] = 'Tarif | Mylistrik';
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
         
         // Pagination setup
@@ -483,49 +486,54 @@ class Adm extends CI_Controller
     }
 
     public function tambah_tarif(){
+         // Menyiapkan data untuk judul halaman
         $data['title'] = 'Tambah Tarif | Mylistrik';
+        // Mengambil data user yang sedang login dari session
         $data['user'] = $this->ModelAdm->cekData(['username' => $this->session->userdata('username')])->row_array();
+          // Query untuk mendapatkan ID tarif terakhir (terbesar)
         $queryIDTarif = "SELECT max(id_tarif) as maxID FROM tarif";
         $data['idT'] = $this->db->query($queryIDTarif)->result_array();
-       
+         // Validasi input untuk field "daya", wajib diisi
         $this->form_validation->set_rules('daya', 'daya', 'required', [
             'required' => 'daya Belum diisi!!'
         ]);
-
+        // Validasi input untuk field "tarifperkwh", wajib diisi
         $this->form_validation->set_rules('tarifperkwh', 'tarif perkwh', 'required', [
             'required' => 'tarif Belum diisi!!',
         ]);
-
+        // Jika validasi form gagal
         if ($this->form_validation->run() == false) {
+            // Ambil data semua tarif untuk ditampilkan (jika perlu)
             $data['tarif'] = $this->ModelCstmr->get_all_tarif();
+
+            // Tampilkan tampilan form tambah tarif
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('admin/tambah-tarif', $data);
             $this->load->view('templates/footer');
         } else {
-            function bersihkanRupiah($string)
-            {
-                        $string = str_replace('Rp', '', $string);
-                        $string = str_replace('.', '', $string);
-                        return $string;
-            }
-            $dana = $this->input->post('tarifperkwh', true);
-            $tarif = bersihkanRupiah($dana);
+            
+            // Ambil input tarif per kWh dari form
+            $inputtarif = $this->input->post('tarifperkwh', true);
+            // Bersihkan format rupiah
+            $tarif = bersihkanRupiah($inputtarif);
+            // Siapkan data untuk disimpan ke dalam tabel `tarif
             $data = [
                 'id_tarif' => $this->input->post('id_tarif', true),
                 'daya' => $this->input->post('daya', true),
                 'tarifperkwh' => $tarif,
             ];
-
+            // Simpan data tarif ke database melalui model
             $this->ModelAdm->simpanData('tarif',$data);
-
+            // Set pesan sukses dengan flashdata
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">Selamat!! 
                     tarif berhasil dibuat</div>
                     <meta http-equiv="refresh" content="2">'
             );
+            // Redirect ke halaman daftar tarif admin
             redirect('adm/tarif');
         }
     }
@@ -565,12 +573,6 @@ class Adm extends CI_Controller
             $this->load->view('admin/edit-tarif', $data);
             $this->load->view('templates/footer');
         } else {
-            function bersihkanRupiah($string)
-            {
-                        $string = str_replace('Rp', '', $string);
-                        $string = str_replace('.', '', $string);
-                        return $string;
-            }
             $dana = $this->input->post('tarifperkwh', true);
             $tarif = bersihkanRupiah($dana);
             $data = [
@@ -1028,7 +1030,8 @@ class Adm extends CI_Controller
         // untuk tampilkan data pembayaran
         $query = "SELECT * FROM pembayaran 
                     JOIN pelanggan ON pembayaran.id_pelanggan = pelanggan.id_pelanggan
-                    JOIN user ON pembayaran.id_user = user.id_user";
+                    JOIN user ON pembayaran.id_user = user.id_user
+                    JOIN tagihan ON pembayaran.id_tagihan = tagihan.id_tagihan WHERE tagihan.status = 'PAID'";
         $data['pembayaran'] = $this->db->query($query)->result_array();
         $nama_bulan = [
                 1 => 'Januari',
@@ -1088,6 +1091,82 @@ class Adm extends CI_Controller
         );
         // Redirect kembali ke halaman profil
         redirect('adm/profile');
+    }
+
+
+    /**
+     * Halaman login admin.
+     * Validasi form dan proses login admin.
+     *
+     * @return void
+     */
+    public function loginadm()
+    {
+        $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+            'required' => 'username Harus diisi!!',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
+            'required' => 'Password Harus diisi'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Login | Mylistrik';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/login-admin');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $this->_loginadm();
+        }
+    }
+
+    /**
+     * Proses autentikasi login admin.
+     * Cek username dan password, set session jika berhasil.
+     *
+     * @return void
+     */
+    private function _loginadm()
+    {
+        $username = htmlspecialchars($this->input->post('username', true));
+        $password = $this->input->post('password', true);
+
+        $user = $this->ModelAdm->cekData(['username' => $username])->row_array();
+
+        if ($user) {
+            //cek password
+            if (password_verify($password, $user['password'])) {
+                $data = ['username' => $user['username'], 'id_user' => $user['id_user'], 'password' => $user['password'], 'nama_admin' => $user['nama_admin'], 'id_level' => $user['id_level']];
+                $this->session->set_userdata($data);
+                redirect('adm');
+            } else {
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>
+                    <meta http-equiv="refresh" content="2">'
+                );
+                redirect('auth/loginadm');
+            }
+        } else {
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-danger alert-message" role="alert">Username tidak terdaftar!!</div>
+                <meta http-equiv="refresh" content="2">'
+            );
+            redirect('auth/loginadm');
+        }
+    }
+    public function logout_Adm()
+    {
+        $this->session->sess_destroy();
+
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success" role="alert">Kamu berhasil logout</div>
+            <meta http-equiv="refresh" content="2">'
+        );
+
+        redirect('auth/loginadm');
     }
 
 }

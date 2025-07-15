@@ -11,6 +11,7 @@
                                 <th scope="col">ID Pembayaran</th>
                                 <th scope="col">Tanggal Bayar</th>
                                 <th scope="col">Pembayaran Bulan</th>
+                                <th scope="col">Biaya</th>
                                 <th scope="col">Biaya Admin</th>
                                 <th scope="col">Total Bayar</th>
                             </tr>
@@ -31,6 +32,7 @@
                                         <td><span><?php echo $R['id_pembayaran']; ?></span></td>
                                         <td><span><?= date('d-m-Y', strtotime($R['tanggal_pembayaran'])); ?></span></td>
                                         <td><?php echo $nama_bulan[(int)$R['bulan_bayar']]; ?></td>
+                                        <td><?php echo "Rp. " . number_format($R['total_bayar']-2500); ?></td>
                                         <td><?php echo "Rp. " . number_format($R['biaya_admin']); ?></td>
                                         <td><?php echo "Rp. " . number_format($R['total_bayar']); ?></td>
                                     </tr>

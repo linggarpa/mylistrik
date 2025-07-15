@@ -185,12 +185,6 @@ class Pelanggan extends CI_Controller
      * @return void
      */
     public function GoBayar(){
-        function bersihkanRupiah($string)
-        {
-                    $string = str_replace('Rp', '', $string);
-                    $string = str_replace('.', '', $string);
-                    return $string;
-        }
         $dana = $this->input->post('nominal_bayar');
         $total = $this->input->post('totalbyr');
         $id_tagihan = $this->input->post('id_tagihan');

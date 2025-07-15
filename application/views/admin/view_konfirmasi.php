@@ -37,7 +37,7 @@
                     </tr>
                     <tr class="border-top">
                         <td><strong>Total Tagihan</strong></td>
-                        <td><strong>Rp <?= number_format($k['total_bayar'] + 2500, 2, ',', '.') ?></strong></td>
+                        <td><strong>Rp <?= number_format($k['total_bayar'], 2, ',', '.') ?></strong></td>
                     </tr>
                 </table>
 
@@ -45,7 +45,7 @@
                 <div class="mt-4">
                     <a href="<?= base_url('adm/tagihan') ?>" class="btn btn-secondary">Kembali</a>
                     <?php if ($k['status'] == 'PROCESS') : ?>
-                        <a href= "<?php echo base_url(); ?>adm/tolak_konfirmasi/<?php echo $k['id_pembayaran']; ?>" class="btn btn-danger ml-2" onclick="return confirm('Yakin ingin menolak pembayaran ini?')">Tolak Pembayaran</a>
+                        <!-- <a href= "<?php echo base_url(); ?>adm/tolak_konfirmasi/<?php echo $k['id_pembayaran']; ?>" class="btn btn-danger ml-2" onclick="return confirm('Yakin ingin menolak pembayaran ini?')">Tolak Pembayaran</a> -->
                         <a href= "<?php echo base_url(); ?>adm/terima_konfirmasi/<?php echo $k['id_pembayaran']; ?>" class="btn btn-success ml-2" onclick="return confirm('Yakin ingin menyetujui pembayaran ini?')">Setujui Pembayaran</a>
                     <?php endif; ?>
                 </div>

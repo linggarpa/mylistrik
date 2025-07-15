@@ -11,7 +11,7 @@
                     <form action="<?= base_url('adm/edit_pelanggan/') ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_pelanggan" value="<?= $p['id_pelanggan'] ?>">
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 col-form-label"></label>
+                            <label for="username" class="col-sm-2 col-form-label">Username</label>
                             <input type="text" class="form-control form-control-user" id="username" name="username" value="<?= $p['username'] ?>">
                             <small class="text-danger"><?php echo form_error('username'); ?></small>
                         </div>          
@@ -21,12 +21,12 @@
                             <small class="text-danger"><?php echo form_error('nomor_kwh'); ?></small>
                         </div>
                         <div class="form-group">
-                            <label for="nama_pelanggan" class="col-sm-2 col-form-label"></label>
+                            <label for="nama_pelanggan" class="col-sm-2 col-form-label">Nama Pelanggan</label>
                             <input type="text" class="form-control form-control-user" id="nama_pelanggan" name="nama_pelanggan" value="<?= $p['nama_pelanggan'] ?>">
                             <small class="text-danger"><?php echo form_error('nama_pelanggan'); ?></small>
                         </div>
                         <div class="form-group">
-                            <label for="alamat" class="col-sm-2 col-form-label"></label>
+                            <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                             <textarea type="text" class="form-control form-control-user" id="alamat" name="alamat" ><?= $p['alamat'] ?></textarea>
                             <small class="text-danger"><?php echo form_error('alamat'); ?></small>
                         </div>

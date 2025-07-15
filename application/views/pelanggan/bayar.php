@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>Jumlah Meter</th>
-                        <td><?= $b['jumlah_meter'] ?></td>
+                        <td><?= $b['jumlah_meter'] ?>KWH</td>
                     </tr>
                     <tr>
                         <th>Total Tagihan</th>

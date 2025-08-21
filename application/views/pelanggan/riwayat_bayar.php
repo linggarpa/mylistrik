@@ -14,12 +14,13 @@
                                 <th scope="col">Biaya</th>
                                 <th scope="col">Biaya Admin</th>
                                 <th scope="col">Total Bayar</th>
+                                <th scope="col">Struk</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if ($countRbayar< 1) { ?>
                                 <tr>
-                                    <td colspan="6">
+                                    <td colspan="7">
                                         <h4 class="text-center my-5">Tidak ada Riwayat Bayar</h4>
                                     </td>
                                 </tr>
@@ -35,6 +36,7 @@
                                         <td><?php echo "Rp. " . number_format($R['total_bayar']-2500); ?></td>
                                         <td><?php echo "Rp. " . number_format($R['biaya_admin']); ?></td>
                                         <td><?php echo "Rp. " . number_format($R['total_bayar']); ?></td>
+                                        <td><a class="btn btn-success" href="<?= base_url('pelanggan/struk/') . $R['id_pembayaran']; ?>"><i class="fas fa-fw fa-file"></i> Lihat</a></td>
                                     </tr>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>

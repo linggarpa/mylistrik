@@ -66,7 +66,6 @@ class Pelanggan extends CI_Controller
     public function RiwayatBayar(){
         $data['title'] = 'Riwayat Bayar | Mylistrik';
         $id_pelanggan = $this->session->userdata('id_pelanggan');
-        $status = 'PAID';
         $queryRbayar = "SELECT * FROM pembayaran JOIN tagihan ON pembayaran.id_tagihan = tagihan.id_tagihan where  tagihan.status = 'PAID' AND pembayaran.id_pelanggan = '$id_pelanggan' ";
         $Rbayar = $this->db->query($queryRbayar)->result_array();
 
@@ -368,6 +367,41 @@ class Pelanggan extends CI_Controller
         $this->load->view('templates/user_navbar', $data);
         $this->load->view('pelanggan/ubah_password.php', $data);
         $this->load->view('templates/user_footer');
+    }
+
+    public function struk($id)
+    {
+        $data['pembayaran'] = $this->db->query("SELECT * FROM pembayaran JOIN tagihan ON pembayaran.id_tagihan = tagihan.id_tagihan 
+            JOIN pelanggan ON pembayaran.id_pelanggan = pelanggan.id_pelanggan where pembayaran.id_pembayaran = '$id' ")->result_array();
+        $nama_bulan = [
+                1 => 'Januari',
+                2 => 'Februari',
+                3 => 'Maret',
+                4 => 'April',
+                5 => 'Mei',
+                6 => 'Juni',
+                7 => 'Juli',
+                8 => 'Agustus',
+                9 => 'September',
+                10 => 'Oktober',
+                11 => 'November',
+                12 => 'Desember'
+            ];
+        $data['nama_bulan'] = $nama_bulan;
+        $sroot = $_SERVER['DOCUMENT_ROOT'];
+        include $sroot . "/mylistrik/application/third_party/dompdf/autoload.inc.php";
+
+        $dompdf = new Dompdf\Dompdf();
+        $this->load->view('pelanggan/pdf-struk.php', $data);
+        $paper_size  = 'A4'; // ukuran kertas 
+        $orientation = 'potrait'; //tipe format kertas potrait atau landscape 
+        $html = $this->output->get_output();
+        $dompdf->set_paper($paper_size, $orientation);
+        //Convert to PDF 
+        $dompdf->load_html($html);
+        $dompdf->render();
+        $dompdf->stream("struk_listrik.pdf", array('Attachment' => 0));
+        // nama file pdf yang di hasilkan
     }
     
 }

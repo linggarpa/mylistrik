@@ -20,7 +20,7 @@
                         <tbody>
                             <?php if ($countTagihan < 1) { ?>
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="8">
                                         <h4 class="text-center my-5">Tidak ada tagihan</h4>
                                     </td>
                                 </tr>
